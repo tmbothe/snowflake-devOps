@@ -7,7 +7,7 @@ CREATE OR ALTER WAREHOUSE THIM_WH
 
 
 -- Separate database for git repository
-CREATE OR ALTER DATABASE EMP_{{environment}};
+CREATE OR ALTER DATABASE EMP_DEV;
 
 
 -- API integration is needed for GitHub integration
@@ -23,7 +23,7 @@ CREATE OR REPLACE GIT REPOSITORY emp_common.public.emp_repo
   ORIGIN = 'https://github.com/tmbothe/snowflake-devOps'; -- INSERT URL OF FORKED REPO HERE
 
 
-CREATE OR ALTER DATABASE EMP_{{environment}}; 
+CREATE OR ALTER DATABASE EMP_DEV; 
 
 
 -- To monitor data pipeline's completion
