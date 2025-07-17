@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-22.04
 
     env:
-      REPO_NAME: "quickstart_common.public.quickstart_repo"
+      REPO_NAME: "emp_common.public.emp_repo"
       SNOWFLAKE_CONNECTIONS_DEFAULT_AUTHENTICATOR: "SNOWFLAKE_JWT"
-      SNOWFLAKE_CONNECTIONS_DEFAULT_PRIVATE_KEY_FILE: ".snowflake/snowflake_rsa_key"
+      #SNOWFLAKE_CONNECTIONS_DEFAULT_PRIVATE_KEY_FILE: ".snowflake/snowflake_rsa_key"
       # Read connection secrets
       SNOWFLAKE_CONNECTIONS_DEFAULT_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
       SNOWFLAKE_CONNECTIONS_DEFAULT_USER: ${{ secrets.SNOWFLAKE_USER }}
@@ -37,7 +37,7 @@ jobs:
         uses: Snowflake-Labs/snowflake-cli-action@v1.5
         with:
           cli-version: "latest"
-          default-config-file-path: ".snowflake/config.toml"
+          #default-config-file-path: ".snowflake/config.toml"
 
       # Update Snowflake's copy of the repository
       - name: Fetch repository changes
@@ -53,6 +53,6 @@ jobs:
             RETENTION_TIME=0
           fi
           snow git execute \
-            "@${REPO_NAME}/branches/${BRANCH_NAME}/steps/0[134]_*" \
+            "@${REPO_NAME}/branches/${BRANCH_NAME}/steps/0[12]_*" \
             -D "environment='${BRANCH_NAME}'" \
             -D "retention_time=${RETENTION_TIME}"
