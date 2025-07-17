@@ -48,7 +48,7 @@ jobs:
         run: |
           BRANCH_NAME=${{ github.ref_name }}
           if [ "${BRANCH_NAME}" == "main" ]; then
-            RETENTION_TIME=1
+            RETENTION_TIME=2
           else
             RETENTION_TIME=0
           fi
