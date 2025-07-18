@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     env:
-      REPO_NAME: "emp_common.public.emp_repo"
+      REPO_NAME: "EMP_COMMON.public.emp_repo"
       SNOWFLAKE_CONNECTIONS_DEFAULT_AUTHENTICATOR: "SNOWFLAKE_JWT"
       SNOWFLAKE_CONNECTIONS_DEFAULT_PRIVATE_KEY_FILE: ".snowflake/snowflake_rsa_key"
       # Read connection secrets
@@ -48,11 +48,12 @@ jobs:
         run: |
           BRANCH_NAME=${{ github.ref_name }}
           if [ "${BRANCH_NAME}" == "main" ]; then
-            RETENTION_TIME=2
+            RETENTION_TIME=1
           else
             RETENTION_TIME=0
           fi
+          
           snow git execute \
-            "@${REPO_NAME}/branches/${BRANCH_NAME}/steps/0[12]_*" \
-            -D "environment='${BRANCH_NAME}'" \
-            -D "retention_time=${RETENTION_TIME}"
+            "@${REPO_NAME}/branches/${BRANCH_NAME}/databases/*" \
+            -D "environment='${BRANCH_NAME}'" 
+            
